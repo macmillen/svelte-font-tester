@@ -3,7 +3,7 @@
   import { dragElement } from "./draggable.js";
 
   let fontOptions: string[] = [];
-  let font = "";
+  let font = "Agbalumo";
   let selectElement: HTMLSelectElement;
   let selectElementFocused = false;
 
@@ -20,7 +20,6 @@
     if (typeof document === "undefined") return;
 
     document.body.style.fontFamily = value;
-    font = value;
   };
 </script>
 
@@ -33,16 +32,17 @@
 <button use:dragElement class="__ft-container" on:click={() => selectElement.focus()}>
   <p class="__ft-header">Font Test:</p>
   <p class="__ft-text-sample" style="font-family: {font};">Sphinx of black quartz, judge my vow.</p>
+  <label for="__ft-select">Select Font:</label>
   <select
+    id="__ft-select"
     class="__ft-select"
-    bind:value={font}
     bind:this={selectElement}
+    bind:value={font}
     on:focus={() => (selectElementFocused = true)}
     on:blur={() => (selectElementFocused = false)}
   >
-    <option value="">Choose font</option>
     {#each fontOptions as item}
-      <option>{item}</option>
+      <option value={item}>{item}</option>
     {/each}
   </select>
   {#if selectElementFocused}
@@ -98,6 +98,8 @@
     padding-left: 1rem;
     font-size: 20px;
     padding-right: 1rem;
+    background-color: #86efac;
+    color: black;
   }
 
   .__ft-info {
