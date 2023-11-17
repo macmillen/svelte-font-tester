@@ -31,38 +31,39 @@
 </svelte:head>
 
 <button use:dragElement class="__ft-container" on:click={() => selectElement.focus()}>
-  <div class="__ft-box">
-    <p class="__ft-header">Font Test:</p>
-    <p class="__ft-text-sample" style="font-family: {font};">
-      Sphinx of black quartz, judge my vow.
-    </p>
-    <select
-      class="__ft-select"
-      bind:value={font}
-      bind:this={selectElement}
-      on:focus={() => (selectElementFocused = true)}
-      on:blur={() => (selectElementFocused = false)}
-    >
-      <option value="">Choose font</option>
-      {#each fontOptions as item}
-        <option>{item}</option>
-      {/each}
-    </select>
-    {#if selectElementFocused}
-      <div class="__ft-info">You can use the Arrow Keys (left / right) to cycle through fonts</div>
-    {/if}
-  </div>
+  <p class="__ft-header">Font Test:</p>
+  <p class="__ft-text-sample" style="font-family: {font};">Sphinx of black quartz, judge my vow.</p>
+  <select
+    class="__ft-select"
+    bind:value={font}
+    bind:this={selectElement}
+    on:focus={() => (selectElementFocused = true)}
+    on:blur={() => (selectElementFocused = false)}
+  >
+    <option value="">Choose font</option>
+    {#each fontOptions as item}
+      <option>{item}</option>
+    {/each}
+  </select>
+  {#if selectElementFocused}
+    <div class="__ft-info">You can use the Arrow Keys (left / right) to cycle through fonts</div>
+  {/if}
 </button>
 
 <style>
   .__ft-container {
     all: unset;
     position: fixed;
-    z-index: 50000;
-    width: 100%;
-    cursor: grab;
+    border-radius: 0.75rem;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0.75rem;
+    width: 100%;
+    max-width: 20rem;
+    background-color: black;
+    z-index: 50000;
+    cursor: grab;
     color: white;
     font-family:
       system-ui,
@@ -76,20 +77,6 @@
       "Open Sans",
       "Helvetica Neue",
       sans-serif;
-    pointer-events: none;
-  }
-
-  .__ft-box {
-    pointer-events: all;
-    border-radius: 0.75rem;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    padding: 0.75rem;
-    width: 100%;
-    max-width: 20rem;
-    background-color: black;
   }
 
   .__ft-header {
