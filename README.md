@@ -4,6 +4,10 @@ This Svelte library allows you to determine the perfect font for your website by
 
 ![showcase](/static/showcase.gif)
 
+## Demo
+
+[Demo website](https://svelte-font-tester.vercel.app/)
+
 ## Getting started
 
 Just add the component into your Svelte app and you're good to go!
