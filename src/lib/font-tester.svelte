@@ -1,20 +1,14 @@
 <script lang="ts">
-  import { onMount } from "svelte";
   import { dragElement } from "./draggable.js";
+  import { GOOGLE_FONTS } from "./google-fonts.js";
 
-  let fontOptions: string[] = [];
   let font = "Agbalumo";
   let selectElement: HTMLSelectElement;
   let selectElementFocused = false;
 
   $: onChangeFont(font);
 
-  onMount(async () => {
-    const fonts = (await (await fetch("https://fonts.google.com/metadata/fonts")).json()) as {
-      familyMetadataList: { family: string }[];
-    };
-    fontOptions = fonts.familyMetadataList.map((font) => font.family);
-  });
+  const fontOptions = GOOGLE_FONTS.familyMetadataList.map((font) => font.family);
 
   const onChangeFont = (value: string) => {
     if (typeof document === "undefined") return;
